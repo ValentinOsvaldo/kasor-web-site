@@ -97,6 +97,10 @@ input[type="submit"] {
     text-align: center;
 }
 
+.rigth {
+    text-align: left;
+}
+
 .font-bold {
     font-weight: bold;
 }
