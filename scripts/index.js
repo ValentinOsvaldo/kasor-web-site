@@ -63,4 +63,12 @@
     if(scrollY === 0) $scrollBtn.classList.remove("show"); 
   })
 
+  /* Formulario */
+  
+  const $form = d.getElementById("form");
+
+  $form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
 })(document, localStorage);
