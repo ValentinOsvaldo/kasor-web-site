@@ -164,6 +164,43 @@ input[type="submit"] {
 
 /* Custom CSS */
 
+/* Loader */
+
+.loader {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+}
+
+.loader svg {
+    width: 5rem;
+    height: 5rem;
+    fill: #fff;
+    animation: loader 1s linear infinite;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.desactive {
+    display: none;
+}
+
+/* Menu */
+
 .menu {
     width: 100%;
     position: sticky;
@@ -384,13 +421,81 @@ input[type="submit"] {
     opacity: 1;
 }
 
-/* iFrames */
+/* gallery */
 
-.facebook {
-    width: 100%;
-    height: auto;
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
 }
 
+.gallery-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    filter: grayscale(1);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+} 
+
+.gallery-img:hover {
+    filter: none;
+}
+
+.gallery-show {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease-in-out;
+}
+
+.show-img {
+    opacity: 1;
+    visibility: visible;
+}
+
+.close {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+}
+
+.close svg {
+    fill: #fff;
+    width: 3rem;
+    height: 3rem;
+}
+
+.img-show {
+    /* width: fit-content; */
+    padding: 0 1rem;
+    height: 75%;
+    object-fit: contain;
+}
+
+.text-show {
+    position: absolute;
+    bottom: 3vh;
+}
+ 
 /* Formulario */
 
 .form {
@@ -443,7 +548,7 @@ input[type="submit"] {
     position: fixed;
     bottom: calc(7vh - 1rem);
     left: calc(50vw - 1.5rem);
-    z-index: 1000;
+    z-index: 999;
     color: var(--red-color);
     display: flex;
     justify-content: center;
@@ -499,16 +604,21 @@ input[type="submit"] {
     .media-icons {
         flex-direction: row;
     }
-
+    
     .form {
         width: 75%;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
     }
 }
 
 @media screen and (min-width: 1024px) {
 
     .vh-100 {
-        height: 100vh;
+        min-height: 100vh;
     }
 
     .nav-bar {

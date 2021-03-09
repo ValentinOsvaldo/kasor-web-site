@@ -1,4 +1,10 @@
 ((d, ls) => {
+  /* Loader */
+
+  const $loader = d.querySelector(".loader");
+
+  d.addEventListener("waiting", () => $loader.classList.add("desactive"));
+
   /* Menu */
   const $menuBtn = d.querySelector(".menu-btn");
 
@@ -6,8 +12,10 @@
     const $panel = d.querySelector(".panel"),
       $links = d.querySelectorAll(".link");
 
+      /* Activando y desactivando el menú */
     $panel.classList.toggle("active");
 
+    /* Para cuando demos click en un botón se quite el menú */
     $links.forEach((link) => {
       link.addEventListener("click", () => {
         $panel.classList.remove("active");
@@ -51,24 +59,51 @@
 
   /* Scroll top button */
 
+  const $scrollBtn = d.querySelector(".scroll-top");
+
   window.addEventListener("scroll", () => {
-    const $scrollBtn = d.querySelector(".scroll-top");
 
-    $scrollBtn.addEventListener("click", () => scrollTo({
-      top: 0,
-      behavior: "smooth"
-    }));
+    $scrollBtn.addEventListener("click", () =>
+      scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    );
 
-    if(scrollY > 0) $scrollBtn.classList.add("show");
-    if(scrollY === 0) $scrollBtn.classList.remove("show"); 
-  })
+    if (scrollY > 0) $scrollBtn.classList.add("show");
+    if (scrollY === 0) $scrollBtn.classList.remove("show");
+  });
+
+  /* Gallery */
+
+  const $images = d.querySelectorAll(".gallery-img");
+
+  $images.forEach((image) => {
+    image.addEventListener("click", () => {
+      const $showImg = d.querySelector(".gallery-show"),
+        $closeBtn = d.querySelector(".close");
+
+      $showImg.classList.add("show-img");
+      d.querySelector(".img-show").setAttribute("src", image.src);
+      d.querySelector(".text-show").innerHTML = image.alt;
+
+      $closeBtn.addEventListener("click", () => {
+        $showImg.classList.remove("show-img");
+        // Activando el scroll button después de quitar el lightbox 
+        $scrollBtn.classList.add("show");
+      });
+
+      // Desactivando el scroll button
+      $scrollBtn.classList.remove("show");
+    });
+  });
 
   /* Formulario */
-  
+
   const $form = d.getElementById("form");
 
+  /* Desactivando los eventos por defecto del formulario */
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
   });
-
 })(document, localStorage);
