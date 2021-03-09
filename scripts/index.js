@@ -3,7 +3,7 @@
 
   const $loader = d.querySelector(".loader");
 
-  d.addEventListener("waiting", () => $loader.classList.add("desactive"));
+  d.addEventListener("DOMContentLoaded", () => $loader.classList.add("desactive"));
 
   /* Menu */
   const $menuBtn = d.querySelector(".menu-btn");
