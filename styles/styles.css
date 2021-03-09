@@ -528,6 +528,11 @@ input[type="submit"] {
     outline: none;
 }
 
+.submit {
+    width: 100%;
+    text-align: center;
+}
+
 /* Footer */
 
 .footer {
